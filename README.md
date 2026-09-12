@@ -202,12 +202,51 @@ npm run dev
 
 ## 项目截图
 
-<!-- 建议在此处补充截图，例如：
-![首页](docs/images/home.png)
-![商品详情](docs/images/product-detail.png)
-![后台管理](docs/images/admin.png)
--->
-> 暂未添加截图，可按上面的注释格式补充到 `docs/images/` 目录后在 README 中引用。
+### 登录页
+
+![登录页](docs/images/login.png)
+
+### 前台商城
+
+**商城首页**
+
+![商城首页](docs/images/user_home.png)
+
+**商品下单**
+
+![商品下单](docs/images/user_productorder.png)
+
+**个人中心**
+
+![个人中心](docs/images/user_personalcenter.png)
+
+### 后台管理
+
+**数据统计首页**
+
+![后台首页](docs/images/admin_home.png)
+
+**管理员管理**
+
+![管理员管理](docs/images/admin_admincontrol.png)
+
+**订单管理**
+
+![订单管理](docs/images/admin_order.png)
+
+**收货地址管理**
+
+![收货地址管理](docs/images/admin_shippingadress.png)
+
+### 商家端
+
+**数据统计首页**
+
+![商家首页](docs/images/shop_home.png)
+
+**订单管理**
+
+![商家订单管理](docs/images/shop_order.png)
 
 ---
 
