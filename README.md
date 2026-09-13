@@ -17,7 +17,6 @@
 | MyBatis | 3.0.4 | 数据库操作框架，SQL 写在 XML 文件里 |
 | MySQL | 8.0 | 数据库 |
 | JJWT | 0.9.1 | 生成和校验登录 token |
-| Hutool | 5.7.20 | 工具类库（字符串、URL 处理等） |
 | Fastjson2 | 2.0.53 | 转 JSON 格式的工具 |
 | Lombok | - | 用注解简化实体类的 getter/setter |
 | Maven | 3.6+ | 依赖管理与项目构建 |
