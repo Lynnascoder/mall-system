@@ -14,14 +14,13 @@
 | --- | --- | --- |
 | Java | 17 | 开发语言 |
 | Spring Boot | 3.2.10 | 应用框架 |
-| MyBatis | 3.0.4 | ORM 框架（XML 映射） |
-| MySQL | 8.0 | 数据库（驱动 mysql-connector-j 8.0.31） |
-| JJWT | 0.9.1 | JWT 登录令牌生成与校验 |
-| Hutool | 5.7.20 | 常用工具库 |
-| Fastjson2 | 2.0.53 | JSON 序列化 |
-| Spring AOP | - | 切面编程 |
-| Lombok | - | 简化实体类代码 |
-| Maven | 3.6+ | 项目构建与依赖管理 |
+| MyBatis | 3.0.4 | 数据库操作框架，SQL 写在 XML 文件里 |
+| MySQL | 8.0 | 数据库 |
+| JJWT | 0.9.1 | 生成和校验登录 token |
+| Hutool | 5.7.20 | 工具类库（字符串、URL 处理等） |
+| Fastjson2 | 2.0.53 | 转 JSON 格式的工具 |
+| Lombok | - | 用注解简化实体类的 getter/setter |
+| Maven | 3.6+ | 依赖管理与项目构建 |
 
 ### 前端
 
@@ -32,10 +31,9 @@
 | Element Plus | 2.8 | UI 组件库 |
 | Vue Router | 4.4 | 前端路由 |
 | Pinia | 2.2 | 状态管理 |
-| Axios | 1.7 | HTTP 请求（统一封装拦截器） |
+| Axios | 1.7 | 请求后端接口（做了统一封装） |
 | ECharts | 5.5 | 后台数据统计图表 |
 | wangEditor | 5.1 | 富文本编辑器 |
-| crypto-js / sm-crypto | - | 加密工具 |
 
 ---
 
@@ -79,7 +77,7 @@ mall-system
 ├── src/main/java/com/project/platform/
 │   ├── ProjectManagement.java   # Spring Boot 启动类
 │   ├── config/                  # 跨域、拦截器注册、时间格式等配置
-│   ├── controller/              # 接口层（RESTful）
+│   ├── controller/              # 接口层
 │   ├── service/                 # 业务接口 + impl 实现
 │   ├── mapper/                  # MyBatis Mapper 接口
 │   ├── entity/                  # 数据库实体
