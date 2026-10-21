@@ -52,9 +52,12 @@
 </template>
 <script setup>
 import {ref} from 'vue';
+import {useRoute} from 'vue-router';
 import {ElMessage} from 'element-plus';
 import http from "@/utils/http.js";
 import {User, Lock} from "@element-plus/icons-vue";
+
+const route = useRoute();
 
 const formData = ref({
   username: '',
@@ -81,7 +84,11 @@ const submitForm = () => {
       http.get("/common/currentUser").then(res1 => {
         let currentUser = res1.data;
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        if (currentUser.type === "ADMIN") {
+        // 路由守卫带过来的原页面优先，没有就按角色去各自首页
+        const redirect = route.query.redirect;
+        if (redirect) {
+          window.location.href = String(redirect);
+        } else if (currentUser.type === "ADMIN") {
           window.location.href = "/admin";
         } else {
           window.location.href = "/";

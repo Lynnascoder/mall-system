@@ -202,7 +202,66 @@ function getRoutes() {
     return defaultRoutes;
 }
 
+// ==================== 路由守卫 ====================
+// 前台的公共页面（首页、商品列表、商品详情、登录、注册）游客可看，
+// 下面这些个人相关页面必须先登录。
+const AUTH_FRONT_PATHS = [
+    '/editCurrentUser',
+    '/editPassword',
+    '/balanceInfo',
+    '/shoppingCart',
+    '/productOrder',
+    '/personalCenter'
+]
+
+// 从 localStorage 里取当前登录人，解析失败返回 null，避免脏数据把路由卡死
+function getCurrentUser() {
+    try {
+        return JSON.parse(localStorage.getItem('currentUser') || 'null')
+    } catch (e) {
+        return null
+    }
+}
+
+function requiresAuth(path) {
+    return path.startsWith('/admin') || AUTH_FRONT_PATHS.some(p => path.startsWith(p))
+}
+
+// 注意：这层守卫只是"体验层"，能挡住误操作，挡不住改代码的人。
+// 真正的数据边界在后端 —— 拦截器校验 token，Service 按角色覆盖 userId / shopId。
 router.beforeEach((to, from, next) => {
-    next();
-});
+    const token = localStorage.getItem('token')
+    const user = getCurrentUser()
+
+    // 已经登录还去登录 / 注册页：按角色送回各自的首页
+    if (to.path === '/login' || to.path === '/register') {
+        if (!token) {
+            next()
+            return
+        }
+        next(user && user.type === 'ADMIN' ? '/admin' : '/index')
+        return
+    }
+
+    // 公共页面直接放行
+    if (!requiresAuth(to.path)) {
+        next()
+        return
+    }
+
+    // 没登录：带上原地址去登录页，登录成功后可以跳回来
+    if (!token) {
+        next({path: '/login', query: {redirect: to.fullPath}})
+        return
+    }
+
+    // 后台只对管理员和店铺开放，普通用户踢回前台
+    if (to.path.startsWith('/admin') && user && user.type !== 'ADMIN' && user.type !== 'SHOP') {
+        next('/index')
+        return
+    }
+
+    next()
+})
+
 export default router
